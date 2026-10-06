@@ -1,0 +1,28 @@
+[project]
+name = "dti"
+version = "0.1.0"
+description = "Daily Trading Info automation: gather, draft, review and distribute daily trading reports"
+requires-python = ">=3.11"
+dependencies = [
+    "Jinja2>=3.1",
+    "pandas_market_calendars>=4.4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+dti = "dti.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["dti*"]
+
+[tool.setuptools.package-data]
+dti = ["render/templates/*.html"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

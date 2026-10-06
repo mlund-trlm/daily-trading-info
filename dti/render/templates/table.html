@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{# Generic table: rows is a list of dicts; columns defaults to the first row's keys. #}
+{% block content %}
+{% if rows %}
+{% set cols = columns or rows[0].keys() | list %}
+<table cellpadding="4" cellspacing="0" style="border-collapse: collapse; font-size: 10pt;">
+  <tr>
+  {% for c in cols %}
+    <th align="left" style="background: #1f3864; color: #fff; padding: 4px 8px;">{{ c }}</th>
+  {% endfor %}
+  </tr>
+  {% for r in rows %}
+  <tr style="background: {{ '#f2f2f2' if loop.index is even else '#ffffff' }};">
+    {% for c in cols %}
+    <td style="padding: 4px 8px;">{{ r.get(c, "") }}</td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>Nothing to report today.</p>
+{% endif %}
+{% endblock %}
